@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <%- include('nav') %>
+    <h1><%= title %></h1>
+    <% if (typeof errors != 'undefined'){ %>
+      <ul>
+        <% errors.forEach(function(error){ %>
+          <li><%= error.msg %></li>
+        <% }); %>
+      </ul>
+    <% } %>
+    <form action="" method="POST">
+      <label for="title">title</label>
+      <input name="title" placeholder="your post title" type="text"/>
+      <br>
+      <label for="text">your message</label>
+      <input name="text" type="textarea" />
+      <br>
+      <button>submit</button>
+  </body>
+</html>

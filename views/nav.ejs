@@ -3,8 +3,22 @@
         <nav>
           <ul>
             <li><a href="/">Home</a></li>
+            <% if(currentUser) {%>
+              <li><a href="/auth/logout">log out</a></li>
+              <li><a href="/membersonly/create/post">create a post!</a></li>
+              <% if(currentUser.status === 'guest') {%>
+                <li><a href="/membersonly/become/member">become a member!</a></li>
+              <% } %>
+              <% if(currentUser.status !== 'admin') {%>
+                <li><a href="/membersonly/become/admin">become an admin!</a></li>
+              <% } %>
+              <% if(currentUser.status === 'admin') {%>
+                <li><a href="/membersonly/adminhub">admin hub</a></li>
+              <% } %>
+              <% } else {%>
             <li><a href="/auth/signup">Sign up</a></li>
             <li><a href="/auth/login">Log In</a></li>
+            <% } %> 
           </ul>
         </nav>
       </header>

@@ -8,6 +8,13 @@
     <%- include('nav') %>
 
     <h1>Welcome to <%= title %></h1>
-    <h2>Some content will be here soon I swear!</h2>
+    <% allMessages.forEach(function(message){ %>
+      <% if(currentUser && currentUser.status !== 'guest') {%>
+        <h2><%= message.title %></h2>
+        <p><%= message.created_at %></p>
+        <p><%= message.username %></p>
+      <% } %>
+      <p><%= message.text %></p>
+    <% }); %>
   </body>
 </html>

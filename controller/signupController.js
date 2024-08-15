@@ -16,16 +16,16 @@ exports.signup_post = [
     .isLength({min: 1})
     .escape()
     .custom(async (val) =>{
-        const query = 'SELECT 1 FROM users WHERE id = $1 LIMIT 1';
+        const query = 'SELECT 1 FROM users WHERE username = $1 LIMIT 1';
         const values = [val];
         try{
             const user = await pool.query(query, values);
-            if(user.rowCount === 0) {
+            if(user.rowCount > 0) {
                 throw new Error("that user already exist!");
             }
         } catch (err){
             console.error('Error checking if user exists', err);
-            throw new Error('Database error while checking user existence');
+            throw new Error('that user already exist!');
         }
     }),
     body("password", "your password must not be empty.")
